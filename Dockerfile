@@ -3,6 +3,11 @@ FROM cloudera/quickstart
 # Install wget and java 8
 RUN yum -y install wget java-1.8.0-openjdk ; yum clean all
 
+#Python 3.6
+RUN yum -y install centos-release-scl
+RUN yum -y install rh-python36
+RUN ln -fs /opt/rh/rh-python36/root/usr/bin/python /usr/bin/python
+
 #Upgrade to Spark 2
 WORKDIR /opt
 
@@ -19,6 +24,11 @@ RUN sed -i 's/rootCategory\=INFO/rootCategory\=WARN/g' /opt/spark/conf/log4j.pro
 RUN sed -i 's/lib\/spark-assembly-\*.jar/jars\/spark-hive\*jar/g' /usr/lib/hive/bin/hive
 RUN cp /usr/bin/spark-shell /usr/bin/spark-sql
 RUN sed -i 's/spark-shell/spark-sql/g' /usr/bin/spark-sql
+
+# Enable historyserver logs
+RUN sed -i 's/0.0.0.0:10020/quickstart.cloudera:10020/g' /etc/hadoop/conf/mapred-site.xml
+RUN sed -i 's/0.0.0.0:19888/quickstart.cloudera:19888/g' /etc/hadoop/conf/mapred-site.xml
+RUN sed -i 's/<\/configuration>/<property><name>yarn.log.server.url<\/name><value>http:\/\/quickstart.cloudera:19888\/jobhistory\/logs<\/value><\/property><\/configuration>/g' /etc/hadoop/conf/yarn-site.xml
 
 # Install Zeppelin
 RUN wget https://www-us.apache.org/dist/zeppelin/zeppelin-0.8.1/zeppelin-0.8.1-bin-all.tgz

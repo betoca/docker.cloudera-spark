@@ -8,6 +8,7 @@ hadoop-hdfs-journalnode \
 hadoop-hdfs-namenode \
 hadoop-yarn-nodemanager \
 hadoop-yarn-resourcemanager \
+hadoop-mapreduce-historyserver \
 hive-metastore \
 hive-server2 \
 spark-history-server"

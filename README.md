@@ -8,6 +8,7 @@ This is completely based on the Cloudera's Quickstart for more info go to the [C
 
 As opposed to the Cloudera Quickstart ([CDH 5.7.0](https://docs.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh_package_tarball_57.html#concept_0vc_ddn_yk)), this image has upgraded and preconfigured the following:
 * Java 1.8.0-opendjk
+* Python 3.6
 * Spark 2.4.4
 * Zeppelin 0.8.1
 
@@ -25,3 +26,4 @@ By default `/usr/bin/setup-start.sh` is provided as a convenience to start **som
 This is particularly convenient if you want to leverage HDFS/Hive for your Spark application
 But also, you can directly run `/bin/bash` instead if you wish to start services manually.
 
+> Note other important ports likely to expose are any external hadoop services depending on the services initialized: [Cloudera ports](https://docs.cloudera.com/documentation/enterprise/5-7-x/topics/cdh_ig_ports_cdh5.html)
