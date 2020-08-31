@@ -31,7 +31,7 @@ RUN sed -i 's/0.0.0.0:19888/quickstart.cloudera:19888/g' /etc/hadoop/conf/mapred
 RUN sed -i 's/<\/configuration>/<property><name>yarn.log.server.url<\/name><value>http:\/\/quickstart.cloudera:19888\/jobhistory\/logs<\/value><\/property><\/configuration>/g' /etc/hadoop/conf/yarn-site.xml
 
 # Install Zeppelin
-RUN wget https://www-us.apache.org/dist/zeppelin/zeppelin-0.8.1/zeppelin-0.8.1-bin-all.tgz
+RUN wget https://downloads.apache.org/zeppelin/zeppelin-0.8.2/zeppelin-0.8.2-bin-all.tgz
 RUN sudo tar xf zeppelin-*-bin-all.tgz -C /opt
 RUN sudo mv /opt/zeppelin-*-bin-all /opt/zeppelin
 RUN cp /opt/zeppelin/conf/zeppelin-env.sh.template /opt/zeppelin/conf/zeppelin-env.sh
